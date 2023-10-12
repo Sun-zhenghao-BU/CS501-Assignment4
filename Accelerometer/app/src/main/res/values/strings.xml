@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Accelerometer</string>
+    <string name = "movement">Sensor Scale</string>
+    <string name="PlaceHolder">0.00</string>
 </resources>
