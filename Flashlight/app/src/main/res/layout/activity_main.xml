@@ -29,26 +29,27 @@
                 android:layout_height="100dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="50dp"
-                android:src="@drawable/baseline_flashlight_on_24"/>
+                android:src="@drawable/baseline_flashlight_on_24" />
 
 
             <TextView
                 android:id="@+id/flashlightText"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="80dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="80dp"
                 android:text="Flashlight"
                 android:textSize="20dp"
                 android:textStyle="normal" />
-            
+
             <Switch
                 android:id="@+id/toggleSwitch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="40dp"/>
+                android:layout_marginRight="40dp" />
 
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -84,8 +85,6 @@
                 android:textSize="20dp"
                 android:textStyle="normal"
                 android:background="@android:color/transparent"/>
-
-
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

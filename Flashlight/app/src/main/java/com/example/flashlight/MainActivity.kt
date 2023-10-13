@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.Switch
 import android.view.MotionEvent
 import android.view.View
-import android.hardware.camera2.CameraAccessException
 import android.os.Build
 import android.util.Log
 import android.view.KeyEvent
@@ -16,18 +15,22 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import java.lang.Exception
+import com.example.flashlight.flashlightCameraSetting
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var flashlightSwitch: Switch
     private lateinit var actionEditText: EditText
-    private lateinit var cameraManager: CameraManager
+    lateinit var cameraManager: CameraManager
     private lateinit var gestureDetector: GestureDetector
-    private lateinit var cameraId: String
+    lateinit var cameraId: String
     private lateinit var mainLayout: View
+    var flashlightCamera= flashlightCameraSetting()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         flashlightSwitch = findViewById(R.id.toggleSwitch)
@@ -52,11 +55,11 @@ class MainActivity : AppCompatActivity() {
                 val deltaY = e2.y - e1.y
                 if (Math.abs(deltaY) > 100 && Math.abs(velocityY) > 100) {
                     if (deltaY < 0) {
-                        flashlightCameraSetting(true)
+                        flashlightCamera.turnOnFlashlight()
                         flashlightSwitch.isChecked = true
                         Toast.makeText(this@MainActivity, "Turn On", Toast.LENGTH_SHORT).show()
                     } else {
-                        flashlightCameraSetting(false)
+                        flashlightCamera.turnOffFlashlight()
                         flashlightSwitch.isChecked = false
                         Toast.makeText(this@MainActivity, "Turn Off", Toast.LENGTH_SHORT).show()
                     }
@@ -75,9 +78,9 @@ class MainActivity : AppCompatActivity() {
         // Switch function on/off to turn on/off the flashlight
         flashlightSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                flashlightCameraSetting(true)
+                flashlightCamera.turnOnFlashlight()
             } else {
-                flashlightCameraSetting(false)
+                flashlightCamera.turnOffFlashlight()
             }
         }
 
@@ -88,10 +91,10 @@ class MainActivity : AppCompatActivity() {
                 val actionText = actionEditText.text.toString().trim()
                 if (actionText.equals("ON", ignoreCase = true)) {
                     flashlightSwitch.isChecked = true
-                    flashlightCameraSetting(true)
+                    flashlightCamera.turnOnFlashlight()
                 } else if (actionText.equals("OFF", ignoreCase = true)) {
                     flashlightSwitch.isChecked = false
-                    flashlightCameraSetting(false)
+                    flashlightCamera.turnOffFlashlight()
                 } else {
                     if (actionText.isNotEmpty()) {
                         Toast.makeText(this, "Enter only ON/OFF", Toast.LENGTH_LONG).show()
@@ -108,16 +111,18 @@ class MainActivity : AppCompatActivity() {
 
 
     // Turn on/off the camera flashlight
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun flashlightCameraSetting(enable: Boolean) {
-        try {
-            if (enable) {
-                cameraManager.setTorchMode(cameraId, true)
-            } else {
-                cameraManager.setTorchMode(cameraId, false)
-            }
-        } catch (e: Exception) {}
-    }
+//    @RequiresApi(Build.VERSION_CODES.M)
+//    fun flashlightCameraSetting(enable: Boolean) {
+//        try {
+//            if (enable) {
+//                cameraManager.setTorchMode(cameraId, true)
+//                isFlashlightOn = true
+//            } else {
+//                cameraManager.setTorchMode(cameraId, false)
+//                isFlashlightOn = false
+//            }
+//        } catch (e: Exception) {}
+//    }
 
 
 
