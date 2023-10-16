@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.flashlight"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.flashlight"
@@ -41,7 +41,9 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.ar.sceneform:filament-android:1.17.1")
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:3.3.3")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 }
