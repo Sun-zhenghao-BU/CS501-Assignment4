@@ -51,8 +51,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
         seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                senseVal = progress.toDouble().toFloat()
-                movement_display.text = progress.toDouble().toString();
+                senseVal = progress.toDouble().toFloat()/1000
+                movement_display.text = (progress.toDouble()/1000).toString();
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             z_direction.text = "Z axis: $z"
 
         } else {
-            Toast.makeText(this, "Significant movement not detected!", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "Significant movement not detected!", Toast.LENGTH_SHORT).show()
             Log.d("MyApp", "Significant not movement detected: X: $x, Y: $y, Z: $z")
             x_direction.text = "X axis: 0.00"
             y_direction.text = "Y axis: 0.00"
