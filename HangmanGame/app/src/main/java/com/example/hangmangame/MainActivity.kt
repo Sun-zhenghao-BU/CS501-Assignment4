@@ -234,57 +234,6 @@ class MainActivity : ComponentActivity() {
             }
         } as View.OnClickListener)
 
-        fun reset(){
-            hint_times=0
-            err_num=0
-            b_restart.isEnabled = false
-            b_start.isEnabled = true
-            b_hint.isEnabled = false
-            t_word.text=""
-            b_a.isEnabled = false
-            b_b.isEnabled = false
-            b_c.isEnabled = false
-            b_d.isEnabled = false
-            b_e.isEnabled = false
-            b_f.isEnabled = false
-            b_g.isEnabled = false
-            b_h.isEnabled = false
-            b_i.isEnabled = false
-            b_j.isEnabled = false
-            b_k.isEnabled = false
-            b_l.isEnabled = false
-            b_m.isEnabled = false
-            b_n.isEnabled = false
-            b_o.isEnabled = false
-            b_p.isEnabled = false
-            b_q.isEnabled = false
-            b_r.isEnabled = false
-            b_s.isEnabled = false
-            b_t.isEnabled = false
-            b_u.isEnabled = false
-            b_v.isEnabled = false
-            b_w.isEnabled = false
-            b_x.isEnabled = false
-            b_y.isEnabled = false
-            b_z.isEnabled = false
-        }
-
-        fun changeImage(errNum:Int){
-            if(errNum==6) {
-                reset()
-            }
-            when (errNum) {
-                1 -> I_gallows.setImageResource(R.drawable.error1)
-                2 -> I_gallows.setImageResource(R.drawable.error2)
-                3 -> I_gallows.setImageResource(R.drawable.error3)
-                4 -> I_gallows.setImageResource(R.drawable.error4)
-                5 -> I_gallows.setImageResource(R.drawable.error5)
-                6 -> I_gallows.setImageResource(R.drawable.error6)
-                else -> {
-                    I_gallows.setImageResource(R.drawable.error0)
-                }
-            }
-        }
 
         fun restart_game(){
             I_gallows.setImageResource(R.drawable.error0)
@@ -1013,4 +962,56 @@ class MainActivity : ComponentActivity() {
         outState.putBoolean("b_y_IsEnable", b_y.isEnabled)
         outState.putBoolean("b_z_IsEnable", b_z.isEnabled)
     }
+    fun reset(){
+        hint_times=0
+        err_num=0
+        b_restart.isEnabled = false
+        b_start.isEnabled = true
+        b_hint.isEnabled = false
+        t_word.text=""
+        b_a.isEnabled = false
+        b_b.isEnabled = false
+        b_c.isEnabled = false
+        b_d.isEnabled = false
+        b_e.isEnabled = false
+        b_f.isEnabled = false
+        b_g.isEnabled = false
+        b_h.isEnabled = false
+        b_i.isEnabled = false
+        b_j.isEnabled = false
+        b_k.isEnabled = false
+        b_l.isEnabled = false
+        b_m.isEnabled = false
+        b_n.isEnabled = false
+        b_o.isEnabled = false
+        b_p.isEnabled = false
+        b_q.isEnabled = false
+        b_r.isEnabled = false
+        b_s.isEnabled = false
+        b_t.isEnabled = false
+        b_u.isEnabled = false
+        b_v.isEnabled = false
+        b_w.isEnabled = false
+        b_x.isEnabled = false
+        b_y.isEnabled = false
+        b_z.isEnabled = false
+    }
+
+    fun changeImage(errNum:Int){
+        if(errNum==6) {
+            reset()
+        }
+        when (errNum) {
+            1 -> I_gallows.setImageResource(R.drawable.error1)
+            2 -> I_gallows.setImageResource(R.drawable.error2)
+            3 -> I_gallows.setImageResource(R.drawable.error3)
+            4 -> I_gallows.setImageResource(R.drawable.error4)
+            5 -> I_gallows.setImageResource(R.drawable.error5)
+            6 -> I_gallows.setImageResource(R.drawable.error6)
+            else -> {
+                I_gallows.setImageResource(R.drawable.error0)
+            }
+        }
+    }
+
 }
