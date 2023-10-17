@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 
 class WestActivity : BaseShakeActivity(), GestureDetector.OnGestureListener {
 
@@ -17,7 +18,16 @@ class WestActivity : BaseShakeActivity(), GestureDetector.OnGestureListener {
 
         // initialize shaking animation
         shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake)
+
+        Toast.makeText(this, "You are in WestActivity", Toast.LENGTH_SHORT).show()
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        Toast.makeText(this, "You are in MainActivity", Toast.LENGTH_SHORT).show()
+    }
+
 
     override fun onFling(p1: MotionEvent?, p2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
         if (p1 != null && p2.x - p1.x > 100) { // Left to Right Swipe
