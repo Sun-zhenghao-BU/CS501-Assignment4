@@ -20,8 +20,6 @@ open class MainActivity : BaseShakeActivity(), GestureDetector.OnGestureListener
 
         // initialize shaking animation
         shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake)
-
-        Toast.makeText(this, "You are in MainActivity", Toast.LENGTH_SHORT).show()
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -61,19 +59,43 @@ open class MainActivity : BaseShakeActivity(), GestureDetector.OnGestureListener
             when (determineFlingDirection(p1, p2)) {
                 FlingDirection.RIGHT_TO_LEFT -> {
                     Log.d("FLING", "Detected Right-to-Left Fling")
-                    startActivity(Intent(this, WestActivity::class.java))
+                    try {
+                        startActivity(Intent(this, WestActivity::class.java))
+                    } catch (e: Exception) {
+                        Log.e("MainActivity", "Error starting activity", e)
+                        Toast.makeText(this, "Error starting activity", Toast.LENGTH_SHORT).show()
+                    }
+
                 }
                 FlingDirection.LEFT_TO_RIGHT -> {
                     Log.d("FLING", "Detected Left-to-Right Fling")
-                    startActivity(Intent(this, EastActivity::class.java))
+                    try {
+                        startActivity(Intent(this, EastActivity::class.java))
+                    } catch (e: Exception) {
+                        Log.e("MainActivity", "Error starting activity", e)
+                        Toast.makeText(this, "Error starting activity", Toast.LENGTH_SHORT).show()
+                    }
+
                 }
                 FlingDirection.DOWN_TO_UP -> {
                     Log.d("FLING", "Detected Down-to-Up Fling")
-                    startActivity(Intent(this, NorthActivity::class.java))
+                    try {
+                        startActivity(Intent(this, NorthActivity::class.java))
+                    } catch (e: Exception) {
+                        Log.e("MainActivity", "Error starting activity", e)
+                        Toast.makeText(this, "Error starting activity", Toast.LENGTH_SHORT).show()
+                    }
+
                 }
                 FlingDirection.UP_TO_DOWN -> {
                     Log.d("FLING", "Detected Up-to-Down Fling")
-                    startActivity(Intent(this, SouthActivity::class.java))
+                    try {
+                        startActivity(Intent(this, SouthActivity::class.java))
+                    } catch (e: Exception) {
+                        Log.e("MainActivity", "Error starting activity", e)
+                        Toast.makeText(this, "Error starting activity", Toast.LENGTH_SHORT).show()
+                    }
+
                 }
                 else -> {}
             }
