@@ -3,10 +3,10 @@ package com.example.fiveactivities
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
-import androidx.appcompat.app.AppCompatActivity
+import android.view.animation.AnimationUtils
 
 
-class EastActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
+class EastActivity : BaseShakeActivity(), GestureDetector.OnGestureListener {
 
     private lateinit var gestureDetector: GestureDetector
 
@@ -15,6 +15,9 @@ class EastActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
         setContentView(R.layout.activity_east)
 
         gestureDetector = GestureDetector(this, this)
+
+        // initialize shaking animation
+        shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake)
     }
 
     override fun onFling(p1: MotionEvent?, p2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {

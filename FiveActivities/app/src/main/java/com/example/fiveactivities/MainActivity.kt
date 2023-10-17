@@ -1,19 +1,22 @@
 package com.example.fiveactivities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
+import android.view.animation.AnimationUtils
 
-class MainActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
+class MainActivity : BaseShakeActivity(), GestureDetector.OnGestureListener {
 
     private lateinit var gestureDetector: GestureDetector
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         gestureDetector = GestureDetector(this, this)
+
+        // initialize shaking animation
+        shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake)
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {

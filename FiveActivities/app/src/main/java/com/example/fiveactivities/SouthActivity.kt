@@ -3,9 +3,9 @@ package com.example.fiveactivities
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
-import androidx.appcompat.app.AppCompatActivity
+import android.view.animation.AnimationUtils
 
-class SouthActivity : AppCompatActivity(), GestureDetector.OnGestureListener{
+class SouthActivity : BaseShakeActivity(), GestureDetector.OnGestureListener{
     private lateinit var gestureDetector: GestureDetector
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,11 +13,14 @@ class SouthActivity : AppCompatActivity(), GestureDetector.OnGestureListener{
         setContentView(R.layout.activity_south)
 
         gestureDetector = GestureDetector(this, this)
+
+        // initialize shaking animation
+        shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake)
     }
 
     override fun onFling(p1: MotionEvent?, p2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
         if (p1 != null && p1.y - p2.y > 100) { // Down to Up Swipe
-            finish() // This will end the WestActivity and return you to the MainActivity
+            finish() // This will end the SouthActivity and return you to the MainActivity
             return true
         }
         return false
