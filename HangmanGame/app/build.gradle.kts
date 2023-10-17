@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.hangmangame"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.hangmangame"
@@ -13,7 +13,6 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -33,10 +32,24 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
 }
 
 dependencies {
-
+//    androidTestImplementation("com.android.support.test.espresso:espresso-core:3.0.2", {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    })
+//    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    testImplementation("org.robolectric:robolectric:4.7")
+    implementation("androidx.test.ext:junit-ktx:1.1.5")
+    androidTestImplementation("androidx.test:core-ktx:1.1.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.1.0")
+    androidTestImplementation("androidx.test:runner:1.1.0")
+    androidTestImplementation("androidx.test:rules:1.1.0")
+//    androidTestImplementation("androidx.test:rules:1.4.0")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
