@@ -55,11 +55,11 @@ class MainActivity : AppCompatActivity() {
                 val deltaY = e2.y - e1.y
                 if (Math.abs(deltaY) > 100 && Math.abs(velocityY) > 100) {
                     if (deltaY < 0) {
-                        flashlightCamera.turnOnFlashlight()
+                        flashlightCamera.turnOnFlashlight(cameraId, cameraManager)
                         flashlightSwitch.isChecked = true
                         Toast.makeText(this@MainActivity, "Turn On", Toast.LENGTH_SHORT).show()
                     } else {
-                        flashlightCamera.turnOffFlashlight()
+                        flashlightCamera.turnOffFlashlight(cameraId, cameraManager)
                         flashlightSwitch.isChecked = false
                         Toast.makeText(this@MainActivity, "Turn Off", Toast.LENGTH_SHORT).show()
                     }
@@ -78,9 +78,9 @@ class MainActivity : AppCompatActivity() {
         // Switch function on/off to turn on/off the flashlight
         flashlightSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                flashlightCamera.turnOnFlashlight()
+                flashlightCamera.turnOnFlashlight(cameraId, cameraManager)
             } else {
-                flashlightCamera.turnOffFlashlight()
+                flashlightCamera.turnOffFlashlight(cameraId, cameraManager)
             }
         }
 
@@ -91,10 +91,10 @@ class MainActivity : AppCompatActivity() {
                 val actionText = actionEditText.text.toString().trim()
                 if (actionText.equals("ON", ignoreCase = true)) {
                     flashlightSwitch.isChecked = true
-                    flashlightCamera.turnOnFlashlight()
+                    flashlightCamera.turnOnFlashlight(cameraId, cameraManager)
                 } else if (actionText.equals("OFF", ignoreCase = true)) {
                     flashlightSwitch.isChecked = false
-                    flashlightCamera.turnOffFlashlight()
+                    flashlightCamera.turnOffFlashlight(cameraId, cameraManager)
                 } else {
                     if (actionText.isNotEmpty()) {
                         Toast.makeText(this, "Enter only ON/OFF", Toast.LENGTH_LONG).show()

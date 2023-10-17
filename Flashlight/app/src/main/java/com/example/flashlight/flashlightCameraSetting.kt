@@ -4,13 +4,13 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 
 class flashlightCameraSetting {
-    lateinit var cameraManager: CameraManager
-    lateinit var cameraId: String
+//    lateinit var cameraManager: CameraManager
+//    lateinit var cameraId: String
     var isFlashlightOn :Boolean = false
 
 
     @RequiresApi(Build.VERSION_CODES.M)
-    fun turnOnFlashlight() {
+    fun turnOnFlashlight(cameraId:String, cameraManager: CameraManager) {
         try {
             cameraManager.setTorchMode(cameraId, true)
             isFlashlightOn = true
@@ -20,7 +20,7 @@ class flashlightCameraSetting {
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
-    fun turnOffFlashlight() {
+    fun turnOffFlashlight(cameraId: String, cameraManager: CameraManager) {
         try {
             cameraManager.setTorchMode(cameraId, false)
             isFlashlightOn = false
