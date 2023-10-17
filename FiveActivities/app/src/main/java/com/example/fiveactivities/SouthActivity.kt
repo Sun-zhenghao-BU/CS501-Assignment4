@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 
 class SouthActivity : BaseShakeActivity(), GestureDetector.OnGestureListener{
     private lateinit var gestureDetector: GestureDetector
@@ -16,6 +17,8 @@ class SouthActivity : BaseShakeActivity(), GestureDetector.OnGestureListener{
 
         // initialize shaking animation
         shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake)
+
+        Toast.makeText(this, "You are in SouthActivity", Toast.LENGTH_SHORT).show()
     }
 
     override fun onFling(p1: MotionEvent?, p2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {

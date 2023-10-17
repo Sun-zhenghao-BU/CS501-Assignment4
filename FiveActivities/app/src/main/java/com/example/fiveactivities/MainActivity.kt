@@ -6,8 +6,11 @@ import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.animation.AnimationUtils
+import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
+import kotlin.math.abs
 
-class MainActivity : BaseShakeActivity(), GestureDetector.OnGestureListener {
+open class MainActivity : BaseShakeActivity(), GestureDetector.OnGestureListener {
 
     private lateinit var gestureDetector: GestureDetector
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +20,8 @@ class MainActivity : BaseShakeActivity(), GestureDetector.OnGestureListener {
 
         // initialize shaking animation
         shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake)
+
+        Toast.makeText(this, "You are in MainActivity", Toast.LENGTH_SHORT).show()
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -27,32 +32,55 @@ class MainActivity : BaseShakeActivity(), GestureDetector.OnGestureListener {
         }
     }
 
+    enum class FlingDirection {
+        RIGHT_TO_LEFT, LEFT_TO_RIGHT, DOWN_TO_UP, UP_TO_DOWN, NONE
+    }
+    companion object {
+        fun determineFlingDirection(p1: MotionEvent, p2: MotionEvent): FlingDirection {
+            val deltaX = p1.x - p2.x
+            val deltaY = p1.y - p2.y
+
+            return if (abs(deltaX) > abs(deltaY)) { // Horizontal fling
+                when {
+                    deltaX > 100 -> FlingDirection.RIGHT_TO_LEFT
+                    deltaX < -100 -> FlingDirection.LEFT_TO_RIGHT
+                    else -> FlingDirection.NONE
+                }
+            } else { // Vertical fling
+                when {
+                    deltaY > 100 -> FlingDirection.DOWN_TO_UP
+                    deltaY < -100 -> FlingDirection.UP_TO_DOWN
+                    else -> FlingDirection.NONE
+                }
+            }
+        }
+    }
+
     override fun onFling(p1: MotionEvent?, p2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
         if (p1 != null) {
-            Log.d("FLING", "Start X: ${p1.x}, End X: ${p2.x}, Delta X: ${p1.x - p2.x}")
-            Log.d("FLING", "Start Y: ${p1.y}, End Y: ${p2.y}, Delta Y: ${p1.y - p2.y}")
-
-            when {
-                p1.x - p2.x > 100 -> {
+            when (determineFlingDirection(p1, p2)) {
+                FlingDirection.RIGHT_TO_LEFT -> {
                     Log.d("FLING", "Detected Right-to-Left Fling")
                     startActivity(Intent(this, WestActivity::class.java))
                 }
-                p2.x - p1.x > 100 -> {
+                FlingDirection.LEFT_TO_RIGHT -> {
                     Log.d("FLING", "Detected Left-to-Right Fling")
                     startActivity(Intent(this, EastActivity::class.java))
                 }
-                p1.y - p2.y > 100 -> {
+                FlingDirection.DOWN_TO_UP -> {
                     Log.d("FLING", "Detected Down-to-Up Fling")
                     startActivity(Intent(this, NorthActivity::class.java))
                 }
-                p2.y - p1.y > 100 -> {
+                FlingDirection.UP_TO_DOWN -> {
                     Log.d("FLING", "Detected Up-to-Down Fling")
                     startActivity(Intent(this, SouthActivity::class.java))
                 }
+                else -> {}
             }
         }
         return true
     }
+
 
     override fun onDown(p0: MotionEvent): Boolean {
         Log.d("Down", "Detected Down")

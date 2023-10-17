@@ -19,7 +19,7 @@ open class BaseShakeActivity : AppCompatActivity(), SensorEventListener {
     protected lateinit var shakeAnimation: Animation
 
     companion object {
-        private const val SHAKE_THRESHOLD = 600
+        private const val SHAKE_THRESHOLD = 300
         private var lastX = 0f
         private var lastY = 0f
         private var lastZ = 0f
@@ -54,7 +54,7 @@ open class BaseShakeActivity : AppCompatActivity(), SensorEventListener {
             val z = event.values[2]
             val currentTime = System.currentTimeMillis()
 
-            if ((currentTime - lastShakeTime) > 200) {
+            if ((currentTime - lastShakeTime) > 20) {
                 val diffTime = currentTime - lastShakeTime
                 lastShakeTime = currentTime
 
